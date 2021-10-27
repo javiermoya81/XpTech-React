@@ -1,4 +1,6 @@
 
+import CartsWidget from '../cartsWidget/CartsWidget'
+
 const NavBar = () => {
     return (
         <div>
@@ -22,6 +24,7 @@ const NavBar = () => {
                         </ul>
                     </div>
                 </div>
+                <CartsWidget/>
             </nav>
         </div>
     );
