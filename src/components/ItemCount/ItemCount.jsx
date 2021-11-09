@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-function ItemCount({limite, stock, onAdd}){
+const ItemCount = ({limite, stock, onAdd}) => {
     const [contador, SetContador] = useState(limite);
 
     const sumarUnidad = ()=>{
