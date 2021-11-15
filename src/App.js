@@ -4,6 +4,7 @@ import NavBar from './components/navBar/NavBar';
 import ItemListContainer from './components/itemListContainer/ItemListContainer'
 import ItemCount from './components/itemCount/ItemCount';
 import ItemDetailContainer from './components/itemDetailContainer/ItemDetailContainer';
+import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
 function App() {
 
@@ -12,12 +13,21 @@ function App() {
   }
 
   return (
-    <div className="App">
-      <NavBar/>
-      <ItemListContainer greeting = "Hola, bienvenido al eCommerce de XpTech!!!!"/>
-      <ItemDetailContainer/>
-      <ItemCount limite={1} stock={10} onAdd={onAdd} />
-    </div>
+    <BrowserRouter> 
+      <div className="App">
+        <NavBar/>
+        <Switch>
+          <Route exact path='/'>
+            <ItemListContainer greeting = "Hola, bienvenido al eCommerce de XpTech!!!!"/>
+          </Route>
+          <Route exact path='/detail'>
+            <ItemDetailContainer/>  
+          </Route>  
+        </Switch> 
+        <ItemCount limite={1} stock={10} onAdd={onAdd} />
+        
+      </div>
+    </BrowserRouter>
   );
 }
 export default App;
