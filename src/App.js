@@ -6,6 +6,7 @@ import ItemCount from './components/itemCount/ItemCount';
 import ItemDetailContainer from './components/itemDetailContainer/ItemDetailContainer';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 
+
 function App() {
 
   const onAdd = (contador)=>{
@@ -20,7 +21,10 @@ function App() {
           <Route exact path='/'>
             <ItemListContainer greeting = "Hola, bienvenido al eCommerce de XpTech!!!!"/>
           </Route>
-          <Route exact path='/detail'>
+          <Route exact path='/category/:categoryId'>
+            <ItemListContainer greeting = "Hola, bienvenido al eCommerce de XpTech!!!!"/>
+          </Route>
+          <Route exact path='/item/:itemId'>
             <ItemDetailContainer/>  
           </Route>  
         </Switch> 
