@@ -19,9 +19,6 @@ const ItemCount = ({limite, stock, onAdd}) => {
     return(
         
         <div>
-            <div>
-                <h3 className="btn border border-dark">Placa video</h3>
-            </div>
             <button className='btn btn-outline-success' onClick = {sumarUnidad}>+</button>
             <lavel className="btn border border-info">{contador}</lavel>
             <button className="btn btn-outline-danger" onClick = {restarUnidad}>-</button>
