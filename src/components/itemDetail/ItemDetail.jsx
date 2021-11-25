@@ -1,8 +1,9 @@
 
 import React from 'react'
 import ItemCount from '../itemCount/ItemCount'
-import {useState} from 'react'
+import {useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
+import { CartContext } from '../../context/CartContext'
 
 
 const BtnFinalizar = ()=>{
@@ -15,12 +16,15 @@ const BtnFinalizar = ()=>{
     )
 }
 
-function ItemDetail({item}) {
+const ItemDetail = ({item}) => {
 
     const [cantidad, setCantidad] = useState(0)
 
+    const {addCart, itemsCarrito} = useContext(CartContext)
+
     const onAdd = (contador)=>{
         setCantidad(contador)
+        addCart({...item, 'cantidad':contador})
     }
 
     return (
@@ -31,7 +35,7 @@ function ItemDetail({item}) {
                     <h3>{item.title}</h3>
                 </div>
                 <div>
-                    <img src={item.pictureUrl} />
+                    <img src={item.pictureUrl} alt="imagen" />
                     <p>{item.description}</p>
                 </div>
                 <div>
@@ -43,7 +47,7 @@ function ItemDetail({item}) {
                     <ItemCount limite={1} stock={10} onAdd={onAdd} />
                 :
                     <BtnFinalizar/>
-            }
+                }
             </div>
             
             

@@ -32,8 +32,6 @@ const ItemDetailContainer = () => {
       .finally(()=>setLoading(false));
   }, [itemId]);
 
-  console.log(itemId)
-
   return (
     <>
       <h2>Detalle de producto</h2>

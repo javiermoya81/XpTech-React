@@ -5,14 +5,15 @@ import ItemListContainer from './components/itemListContainer/ItemListContainer'
 import ItemDetailContainer from './components/itemDetailContainer/ItemDetailContainer';
 import {BrowserRouter, Switch, Route} from 'react-router-dom'
 import Cart from './components/cart/Cart';
-import { CartContext } from './context/CartContext';
+import CartContextProvider from './context/CartContext'
+
 
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <CartContext.Provider> 
+    <CartContextProvider>
+      <BrowserRouter>
         <div className="App">
           <NavBar/>
           <Switch>
@@ -29,9 +30,9 @@ function App() {
               <Cart/>  
             </Route>
           </Switch> 
-        </div>
-       </CartContext.Provider> 
-    </BrowserRouter>
+        </div> 
+      </BrowserRouter>
+    </CartContextProvider>
   );
 }
 export default App;
