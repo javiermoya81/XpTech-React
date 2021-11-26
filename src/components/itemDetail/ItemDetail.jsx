@@ -10,7 +10,7 @@ const BtnFinalizar = ()=>{
 
     return(
         <>
-            <Link to={'/cart'} className="btn btn-outline-dark" >Finalizar</Link>
+            <Link to={'/cart'} className="btn btn-outline-dark" >Finalizar Compra</Link>
             <Link to={'/'} className="btn btn-outline-dark" >Seguir Comprando</Link>
         </>
     )
@@ -20,11 +20,11 @@ const ItemDetail = ({item}) => {
 
     const [cantidad, setCantidad] = useState(0)
 
-    const {addCart, itemsCarrito} = useContext(CartContext)
+    const {addCart} = useContext(CartContext)
 
     const onAdd = (contador)=>{
         setCantidad(contador)
-        addCart({...item, 'cantidad':contador})
+        addCart({...item, 'cantidad':contador, 'subtotal':0})
     }
 
     return (
