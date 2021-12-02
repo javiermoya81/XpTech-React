@@ -1,11 +1,37 @@
 
 import { Link } from "react-router-dom"
-import { useContext} from "react"
+import { useContext,  useState} from "react"
 import { CartContext } from "../../context/CartContext"
+import getFirestore from "../../service/getFirestore"
 
 const Cart = ()=>{
     
     const {itemsCarrito, totalCompra, removeCartItem} = useContext(CartContext)
+
+    const [buyerData, setBuyerData] = useState({name:'Javier', phone:'111111111',email:'javier@mail.com'})
+
+    
+    const crearOrdenCompra = (e)=>{
+        //e.preventDefault()
+
+        const ordenCompra={
+            buyer:buyerData,
+            items:itemsCarrito.map(item=>({id:item.id, title:item.title, price:item.price, quantity:item.cantidad})),
+            total: totalCompra
+        }
+
+        const dbItems = getFirestore()
+        const queryCollectionOrders = dbItems.collection('orders')
+
+        queryCollectionOrders.add(ordenCompra)
+        .then(resp =>alert(`Se genero su orden de compra id ${resp.id}`))
+        .catch(err => console.log(err))
+        .finally()
+
+        //return ordenCompra
+        console.log(ordenCompra)
+    }
+
 
     return(
         <>
@@ -39,6 +65,7 @@ const Cart = ()=>{
                             <th>{totalCompra}</th>
                         </tfoot>
                     </table>
+                    <button onClick={crearOrdenCompra}>Comprar</button>
                 </div>
             :   
                 <div>
