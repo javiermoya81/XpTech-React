@@ -1,5 +1,4 @@
 
-import React from 'react'
 import ItemCount from '../itemCount/ItemCount'
 import {useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
@@ -10,8 +9,8 @@ const BtnFinalizar = ()=>{
 
     return(
         <>
-            <Link to={'/cart'} className="btn btn-outline-dark" >Finalizar Compra</Link>
-            <Link to={'/'} className="btn btn-outline-dark" >Seguir Comprando</Link>
+            <Link to={'/cart'} className="btn btn-success" >Finalizar Compra</Link>
+            <Link to={'/'} className="btn btn-warning" >Seguir Comprando</Link>
         </>
     )
 }
@@ -29,7 +28,6 @@ const ItemDetail = ({item}) => {
 
     return (
         <div className='d-flex justify-content-center'>
-            <div></div>
             <div className='card w-75 m-5 p-2'>
                 <div>
                     <h3>{item.title}</h3>
@@ -42,14 +40,32 @@ const ItemDetail = ({item}) => {
                     <p>$ {item.price}</p>
                 </div>
             </div>
+            {(item.stock<1)?
+            ( 
+                <div>
+                    <p>Sin stock disponible</p>
+                    <Link to={'/'} className="btn btn-info" >Volver al Inicio</Link>
+                </div>
+            )
+        :
+        (   <div>
+            <div>
+                <p>Stock Disponible {item.stock}</p>
+            </div>
             <div>
                 {cantidad === 0 ?
-                    <ItemCount limite={1} stock={10} onAdd={onAdd} />
+                <div>
+                    <ItemCount limite={1} stock={item.stock} onAdd={onAdd} />
+                    <Link to={'/'} className="btn btn-info mt-2" >Volver al Inicio</Link>
+                </div>
+                    
                 :
                     <BtnFinalizar/>
                 }
-            </div>
-            
+        </div>
+        </div>)
+        }
+                        
             
         </div>
     )

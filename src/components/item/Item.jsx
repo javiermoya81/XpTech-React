@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Item = ({product})=>{
     return(
-        < div className="d-flex justify-content-around">
+        < div className="col-4 d-flex justify-content-center">
             <div id={product.id} className="card w-50 mt-4">
                 <img src={product.image} className="card-img-top h-50" alt="imagen producto"/>
                 <div class="card-body">

@@ -41,7 +41,7 @@ const ItemListContainer = ({ greeting }) => {
           Cargando productos...
         </button>
       ) : (
-        <ItemList products={products} />
+            <ItemList products={products} />
       )}
     </div>
   );

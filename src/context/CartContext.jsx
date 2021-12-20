@@ -42,9 +42,26 @@ const CartContextProvider = ({children}) =>{
 
         setTotalItemsCarrito(totalItemsCarrito + item.cantidad)
     }
+
+    const deleteCartItem = (itemCart)=>{
+        
+        itemsCarrito.forEach((item,index)=>{
+            if(item.id === itemCart.target.id){
+                itemsCarrito.splice(index,1)
+                setTotalItemsCarrito(totalItemsCarrito - item.cantidad)
+                setTotalCompra(totalCompra-item.subtotal)
+            }
+        })
+    }
+
+    const deleteCart = ()=>{
+        setItemsCarrito([])
+        setTotalItemsCarrito(0)
+        setTotalCompra(0)
+    }
     
     return(
-        <CartContext.Provider value={{itemsCarrito,totalItemsCarrito, totalCompra, addCart}}>
+        <CartContext.Provider value={{itemsCarrito,totalItemsCarrito, totalCompra, addCart, deleteCartItem, deleteCart}}>
             {children}
         </CartContext.Provider>
     )
